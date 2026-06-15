@@ -1,0 +1,4 @@
+101 RCDATA "cars.json"
+104 ICON "bumpkin.ico"
+105 RCDATA "dependencies\\liquid_glass\\data\\fa\\fa-solid-900.ttf"
+106 RCDATA "dependencies\\liquid_glass\\data\\fa\\fa-brands-400.ttf"

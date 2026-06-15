@@ -1,16 +1,14 @@
 # FH6 Car Tool
 
-Standalone Windows GUI for adding and removing cars in Forza Horizon 6.
-
-The tool builds as `GUIInjector.exe`. It does not inject a separate DLL; the ImGui interface, car database, process access, signature scanning, and SQL execution code are compiled into the EXE.
-
 ## Features
 
 - Embedded searchable car database with aliases
-- Add selected cars to the garage
-- View and filter the current garage
-- Remove cars from the garage
-- Uses the local `game/` and `process/` DBDUMPER source files directly
+- Add selected cars to your garage
+- View, search, and filter your current garage
+- Remove cars from your garage
+- Add cars from traffic like buses, trucks and vans.
+- Temporarily borrow or replace selected garage rows
+- Misc database actions such as free cars, free upgrades, and clearing new car tags
 
 ## Build
 
@@ -23,42 +21,31 @@ Prerequisites:
 
 Build with Visual Studio:
 
-```bat
-msbuild FH6CarAdder.sln /p:Configuration=Release /p:Platform=x64
-```
+`msbuild FH6CarAdder.sln /p:Configuration=Release /p:Platform=x64`
 
 Build with CMake:
 
-```bat
-cmake -S . -B build -G "Visual Studio 17 2022" -A x64
-cmake --build build --config Release
-```
+`cmake -S . -B build -G "Visual Studio 17 2022" -A x64`
+
+`cmake --build build --config Release`
 
 Visual Studio output is copied to `bin/Release/`.
-Build output is ignored by git and should be regenerated locally.
+CMake output is copied to `build/bin/Release/`.
 
 ## Usage
 
 1. Start Forza Horizon 6.
-2. Run `bin/Release/GUIInjector.exe` as Administrator.
-3. Use `Check Game` to confirm the process is visible.
-4. Search for a car and click `Add Car`, or use `My Garage` to remove one.
+2. Run `GUIInjector.exe` as Administrator.
+3. Click the Lighting bolt button to confirm FH6 is running.
+4. Search for a car and click `Add Car`, or open `My Garage` to view and remove cars.
+5. Use the `Traffic Vehicles` tab for supported traffic car options.
+6. Use the `Misc` tab for extra database actions.
 
-The Release EXE embeds the car database, so `bin/Release/GUIInjector.exe` does not need `cars.json` next to it.
-
-## Project Structure
-
-```text
-GUIInjector/      Standalone ImGui Windows app
-Injector/         Shared process lookup helper
-game/             Local DBDUMPER database helpers
-process/          Local DBDUMPER process/signature helpers
-dependencies/     ImGui and nlohmann/json
-cars.json         Source car database embedded into the EXE at build time
-```
+The EXE embeds the car database, so `cars.json` does not need to be next to the Release build.
 
 ## Notes
 
 - Run as Administrator so the tool can open the FH6 process.
-- Game updates can break signatures and require updating the DBDUMPER helper code.
-- Back up saves before modifying garage data.
+
+Disclaimer
+I am not responsible for anything that happens when you use this software.
